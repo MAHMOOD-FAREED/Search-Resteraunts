@@ -1,20 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import Search from "./scr/Screens/Search";
+import Details from "./scr/Screens/Details";
+import ResterauntShow from "./scr/Screens/ResterauntShow";
+import Login from "./scr/Screens/Login";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const navigator  = createStackNavigator({
+  Search:Search,
+  Details:Details,
+  ResterauntShow:ResterauntShow,
+  Login:Login
+},{
+  initialRouteName : 'Login',
+  defaultNavigationOptions:{
+    title:"MyFoodBook",
+     headerStyle: {
+      backgroundColor: 'black', // Optional: change header background
+    },
+    headerTitleAlign: 'center',
+    headerTintColor: 'orange', // This changes the header text color
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:30  ,
+      alignItems:"center"
+    },
+  cardStyle: {
+    backgroundColor: 'black' // Same as header or your app background
+  }
+    
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+);
+export default createAppContainer(navigator)
